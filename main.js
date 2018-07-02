@@ -1,49 +1,46 @@
 var userW = 0;
 var aiW = 0;
-//Boolean game is on
-//user select rock,paper or scissors
-do {
+// 0-rock 1-paper 2-scissors
+var userChoice;
+var aiChoice = Math.floor(Math.random() * 3);
 
-  var userChoice = prompt("Choose rock, paper or scissors");
-  if (!(userChoice == "scissors" || userChoice == "rock" || userChoice == "paper")) {
-    do {
-      var userChoice = prompt("Be a man and choose rock, paper or scissors");
-    } while (!(userChoice == "scissors" || userChoice == "rock" || userChoice == "paper"));
+while (!(aiW === 3 || userW === 3)) {
+  getUserChoice();
+  switch (userW) {
+    case 0:
+      if (aiChoice == 1) {
+        aiW++;
+        alert("The User chose rock and the AI paper, the score is "+ aiW+" for the AI "+userW+" for the user.")
+      }else if (aiChoice == 2) {
+        userW++;
+        alert("The User chose rock and the AI scissors, the score is "+ aiW+" for the AI "+userW+" for the user.")
+      }
+      break;
+    case 1:
+      if (aiChoice == 0) {
+        userW++;
+        alert("The User chose paper and the AI rock, the score is "+ aiW+" for the AI "+userW+" for the user.")
+      }else if (aiChoice == 2) {
+        aiW++;
+        alert("The User chose paper and the AI scissors, the score is "+ aiW+" for the AI "+userW+" for the user.")
+      }
+      break;
+    case 2:
+      if (aiChoice == 1){
+        userW++;
+        alert("The User chose scissors and the AI paper, the score is "+ aiW+" for the AI "+userW+" for the user.")
+      } else if (aiChoice == 0) {
+        aiW++;
+        alert("The User chose scissors and the AI rock, the score is "+ aiW+" for the AI "+userW+" for the user.")
+      }
+      break;
   }
-//algorithm to set aiChoice
-  var aiChoice = Math.random();
-  if (aiChoice < 0.34) {
-    aiChoice = "Rock";
-  }else if (aiChoice < 0.67) {
-    aiChoice = "Paper";
-  }else {
-    aiChoice = "Scissors";
+  aiChoice = Math.floor(Math.random() * 3);
+}
+
+function getUserChoice(userChoice){
+  userChoice = prompt("Choose (0) rock (1) paper 2(scissors)");
+  if (!(userChoice == 0 || userChoice == 1|| userChoice == 2)) {
+    userChoice = prompt("DO NOT CHEAT HUMAN. Choose (0) rock (1) paper 2(scissors)");
   }
-
-
-//call function to compare the two choices and declare a winner
-  compare(userChoice, aiChoice,aiW,userW);
-  console.log(aiW + "ai wins " + userW );
-} while (!(aiW === 3 || userW === 3));
-
-
-function compare(userChoice,aiChoice){
-  if (userChoice === aiChoice) {
-    alert("THIS IS A TIE")
-  }
-  else if (userChoice == "rock" && aiChoice == "paper" ) {
-    aiW = aiW + 1;
-  }else if (userChoice == "rock" && aiChoice == "scissors") {
-    userW = userW + 1;
-  }else if (userChoice == "paper" && aiChoice == "rock") {
-    userW = userW + 1;
-  }else if (userChoice == "paper" && aiChoice == "scissors") {
-    aiW = aiW + 1;
-  }else if (userChoice == "scissors" && aiChoice == "rock") {
-    aiW = aiW + 1;
-  }else {
-    userW = userW + 1;
-  }
-
-  return (aiW , userW)
 }
