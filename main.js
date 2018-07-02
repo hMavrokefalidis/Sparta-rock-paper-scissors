@@ -5,7 +5,8 @@ var userChoice;
 var aiChoice = Math.floor(Math.random() * 3);
 
 while (!(aiW === 3 || userW === 3)) {
-  getUserChoice();
+  userChoice = prompt("Choose (0) rock (1) paper 2(scissors)");
+  getUserChoice(userChoice);
   switch (userW) {
     case 0:
       if (aiChoice == 1) {
@@ -39,7 +40,6 @@ while (!(aiW === 3 || userW === 3)) {
 }
 
 function getUserChoice(userChoice){
-  userChoice = prompt("Choose (0) rock (1) paper 2(scissors)");
   if (!(userChoice == 0 || userChoice == 1|| userChoice == 2)) {
     userChoice = prompt("DO NOT CHEAT HUMAN. Choose (0) rock (1) paper 2(scissors)");
   }
